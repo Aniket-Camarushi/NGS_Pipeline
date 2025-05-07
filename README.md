@@ -18,8 +18,29 @@ This pipeline was developed during my undergraduate research to:
 
 *\*Some edge cases being optimized for larger datasets*
 
+## Dependencies
+```bash
+conda create -n rna_seq_pipeline -c bioconda -c conda-forge \
+    fastqc \
+    kallisto \
+    multiqc \
+    star \
+    samtools \
+    gatk4 \
+    picard \
+    bcftools \
+    trimmomatic \
+    snpeff \
+    openssl=1.0  # Needed for some older GATK tools
+
+conda activate rna_seq_pipeline
+```
+
 ## How to Use
 ```bash
+# Create 'Data' directory and input all .fastq files with index files
+mkdir -p Data
+
 # For academic/learning purposes only
-./run_pipeline.sh -i /path/to/fastq -o results_dir
+./run_pipeline.sh
 ```
