@@ -1,6 +1,7 @@
 # NGS Pipeline Project
 *A modular workflow for academic NGS analysis (FASTQ → VCF)*  
 **Developer**: Aniket Camarushi | UMBC Bioinformatics '26  
+*Please switch to `version_2` branch for code.*
 
 ## Overview
 This pipeline was developed during my undergraduate research to:
