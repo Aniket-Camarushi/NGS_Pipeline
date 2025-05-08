@@ -30,6 +30,12 @@ kallisto quant -i ./Kallisto/Homo_sapiens.GRCh38.cdna.all_my.index  -o ./Kallist
 kallisto quant -i ./Kallisto/Homo_sapiens.GRCh38.cdna.all_my.index  -o ./Kallisto/CL13 -t 26 --single -l 250 -s 30 ./Data/SRR8668774.fastq.gz &> ./Kallisto/CL13.log
 
 
+# MultiQC summary
+echo "Running MultiQC summary..."
+mkdir -p MultiQC
+multiqc . -o MultiQC/
+
+
 # 3. STAR Alignment Preparation
 echo "Preparing STAR genome index..."
 mkdir -p STAR
@@ -135,11 +141,5 @@ gatk VariantFiltration \
     --filter-expression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || SOR > 3.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0" \
     --filter-name "GATK_RNAseq_filter" \
     -O ./GATK/filtered_variants.vcf.gz
-
-
-# 8. MultiQC summary
-echo "Running MultiQC summary..."
-mkdir -p multiqc
-multiqc . -o multiqc/
 
 echo "Pipeline finished successfully!"
