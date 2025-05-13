@@ -5,9 +5,9 @@ set -e
 echo "[$(date)] Starting pipeline" >> pipeline.log
 
 # 1. Quality Control with FastQC
-# echo "Executing FastQC..."
-# mkdir -p FastQC
-# fastqc ./Data/*.gz -t 20 -o FastQC/
+echo "Executing FastQC..."
+mkdir -p FastQC
+fastqc ./Data/*.gz -t 20 -o FastQC/
 
 # 2. Kallisto Quantification
 echo "Constructing kallisto index..."
@@ -29,11 +29,6 @@ kallisto quant -i ./Kallisto/Homo_sapiens.GRCh38.cdna.all_my.index  -o ./Kallist
 kallisto quant -i ./Kallisto/Homo_sapiens.GRCh38.cdna.all_my.index  -o ./Kallisto/CL11 -t 26 --single -l 250 -s 30 ./Data/SRR8668772.fastq.gz &> ./Kallisto/CL11.log
 kallisto quant -i ./Kallisto/Homo_sapiens.GRCh38.cdna.all_my.index  -o ./Kallisto/CL12 -t 26 --single -l 250 -s 30 ./Data/SRR8668773.fastq.gz &> ./Kallisto/CL12.log
 kallisto quant -i ./Kallisto/Homo_sapiens.GRCh38.cdna.all_my.index  -o ./Kallisto/CL13 -t 26 --single -l 250 -s 30 ./Data/SRR8668774.fastq.gz &> ./Kallisto/CL13.log
-
-## Temporary MultiQC Cummary
-echo "Generating MultiQC summary..."
-mkdir -p MultiQC
-multiqc . -o MultiQC/
 
 # 3. STAR Alignment Setup
 echo "Preparing STAR genome index..."
@@ -145,8 +140,8 @@ gatk VariantFiltration \
 
 
 # 8. MultiQC Summary
-# echo "Generating MultiQC summary..."
-# mkdir -p MultiQC
-# multiqc . -o MultiQC/
+echo "Generating MultiQC summary..."
+mkdir -p MultiQC
+multiqc . -o MultiQC/
 
 echo "Pipeline completed successfully!"
