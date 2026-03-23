@@ -52,6 +52,9 @@ This pipeline was developed during my undergraduate research to:
 Below is a snippet of bash which is required to run before running `run_pipeline.sh`:
 
 ```bash
+# Create 'Data' directory and input all .fastq files with index files
+mkdir -p Data
+
 wget ftp://ftp.ensembl.org/pub/release-108/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz -P ./Data/
 gunzip ./Data/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 
